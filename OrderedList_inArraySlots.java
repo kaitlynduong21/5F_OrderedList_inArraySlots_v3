@@ -13,14 +13,43 @@ public class OrderedList_inArraySlots
 
 
     /**
-      @return the index of the first occurrence of 
+      @return the index of the first occurrence of
               \findMe in this list, or -1 if
               \findMe is absent from this list.
      */
-    public int indexOf( Integer findMe) {
-        return -1;
-    }
-    
+
+     public int indexOf (Integer findMe) {
+       //return indexOf_while(findMe);
+       return indexOf_recursive(findMe, 0, list_iAS.size() - 1);
+     }
+
+     //while style
+
+     private int indexOf_while( Integer findMe) {
+       int low = 0;
+       int high = list_iAS.size() - 1;
+       int pageToSeek;
+       while (low <=  high) {
+         pageToSeek = (high + low) / 2;
+         if (list_iAS.get(pageToSeek) == findMe) return pageToSeek;
+         else if (list_iAS.get(pageToSeek) > findMe) high = pageToSeek - 1;
+           else low = pageToSeek + 1;
+       }
+       return -1;
+     }
+
+     //recursive style
+
+     public int indexOf_recursive( Integer findMe, int low, int high) {
+       int pageToSeek = (high + low) / 2;
+       if (low > high) return -1;
+       if (list_iAS.get(pageToSeek) == findMe) return pageToSeek;
+       else if (list_iAS.get(pageToSeek) > findMe) return indexOf_recursive(findMe, low, pageToSeek - 1);
+       else return indexOf_recursive(findMe, pageToSeek + 1, high);
+     }
+
+
+
 
     // ------ code from previous assignments below here ----
 
