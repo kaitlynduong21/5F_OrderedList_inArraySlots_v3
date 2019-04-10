@@ -40,7 +40,7 @@ public class OrderedList_inArraySlots
 
      //recursive style
 
-     public int indexOf_recursive( Integer findMe, int low, int high) {
+     private int indexOf_recursive( Integer findMe, int low, int high) {
        int pageToSeek = (high + low) / 2;
        if (low > high) return -1;
        if (list_iAS.get(pageToSeek) == findMe) return pageToSeek;
